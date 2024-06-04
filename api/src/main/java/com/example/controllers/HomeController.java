@@ -1,4 +1,4 @@
-package com.example.api.controllers;
+package com.example.controllers;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
