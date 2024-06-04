@@ -1,9 +1,9 @@
 package com.example.controllers;
 
 
-import com.example.api.models.DTO.category.CategoryCreatingDTO;
-import com.example.api.models.DTO.category.CategoryResponseDTO;
-import com.example.api.services.CategoryService;
+import com.example.models.DTO.category.CategoryCreatingDTO;
+import com.example.models.DTO.category.CategoryResponseDTO;
+import com.example.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;

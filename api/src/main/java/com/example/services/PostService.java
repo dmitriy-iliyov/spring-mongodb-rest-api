@@ -1,10 +1,10 @@
-package com.example.api.services;
+package com.example.services;
 
-import com.example.api.models.DTO.post.PostCreatingDTO;
-import com.example.api.models.DTO.post.PostResponseDTO;
-import com.example.api.models.entitys.CategoryEntity;
-import com.example.api.models.entitys.UserEntity;
-import com.example.api.repositorys.PostRepository;
+import com.example.models.DTO.post.PostCreatingDTO;
+import com.example.models.DTO.post.PostResponseDTO;
+import com.example.models.entitys.CategoryEntity;
+import com.example.models.entitys.UserEntity;
+import com.example.repositorys.PostRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Service;

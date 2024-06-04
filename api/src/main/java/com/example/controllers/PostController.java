@@ -1,8 +1,8 @@
 package com.example.controllers;
 
-import com.example.api.models.DTO.post.PostCreatingDTO;
-import com.example.api.models.DTO.post.PostResponseDTO;
-import com.example.api.services.PostService;
+import com.example.models.DTO.post.PostCreatingDTO;
+import com.example.models.DTO.post.PostResponseDTO;
+import com.example.services.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpHeaders;

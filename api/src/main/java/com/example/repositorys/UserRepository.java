@@ -10,11 +10,11 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends MongoRepository<UserEntity, String> {
 
-//    Optional<UserEntity> findByName(String name);
-//
-//    boolean existsUserEntityByName(String name);
-//
-//    Iterable<UserEntity> findAllByRole(Role role);
-//
-//    void deleteByNameAndPassword(String name, String password);
+    Optional<UserEntity> findByName(String name);
+
+    boolean existsUserEntityByName(String name);
+
+    Iterable<UserEntity> findAllByRole(Role role);
+
+    void deleteByNameAndPassword(String name, String password);
 }

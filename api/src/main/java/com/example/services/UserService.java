@@ -1,4 +1,4 @@
-package com.example.api.services;
+package com.example.services;
 
 import com.example.models.DTO.user.AdminResponseDTO;
 import com.example.models.DTO.user.UserResponseDTO;

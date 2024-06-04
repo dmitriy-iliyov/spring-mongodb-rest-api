@@ -1,8 +1,8 @@
-package com.example.api.services;
+package com.example.services;
 
-import com.example.api.models.DTO.category.CategoryResponseDTO;
-import com.example.api.models.entitys.CategoryEntity;
-import com.example.api.repositorys.CategoryRepository;
+import com.example.models.DTO.category.CategoryResponseDTO;
+import com.example.models.entitys.CategoryEntity;
+import com.example.repositorys.CategoryRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

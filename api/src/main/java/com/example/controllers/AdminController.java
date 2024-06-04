@@ -1,9 +1,9 @@
 package com.example.controllers;
 
-import com.example.api.models.DTO.user.AdminRegistrationDTO;
-import com.example.api.models.DTO.user.AdminResponseDTO;
-import com.example.api.models.DTO.user.UserLogInDTO;
-import com.example.api.services.UserService;
+import com.example.models.DTO.user.AdminRegistrationDTO;
+import com.example.models.DTO.user.AdminResponseDTO;
+import com.example.models.DTO.user.UserLogInDTO;
+import com.example.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;

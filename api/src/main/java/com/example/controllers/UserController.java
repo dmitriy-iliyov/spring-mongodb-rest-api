@@ -7,7 +7,7 @@ import com.example.models.DTO.user.UserRegistrationDTO;
 import com.example.models.Role;
 import com.example.models.entitys.UserEntity;
 import com.example.security.JwtCore;
-import com.example.api.services.UserService;
+import com.example.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
