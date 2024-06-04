@@ -1,6 +1,6 @@
-package com.example.api.models.DTO.post;
+package com.example.models.DTO.post;
 
-import com.example.api.models.entitys.PostEntity;
+import com.example.models.entitys.PostEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

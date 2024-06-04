@@ -1,4 +1,4 @@
-package com.example.api.controllers;
+package com.example.controllers;
 
 
 import com.example.api.models.DTO.category.CategoryCreatingDTO;

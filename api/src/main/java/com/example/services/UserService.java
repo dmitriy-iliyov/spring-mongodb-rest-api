@@ -1,11 +1,11 @@
 package com.example.api.services;
 
-import com.example.api.models.DTO.user.AdminResponseDTO;
-import com.example.api.models.DTO.user.UserResponseDTO;
-import com.example.api.models.Role;
-import com.example.api.models.entitys.UserEntity;
-import com.example.api.repositorys.UserRepository;
-import com.example.api.security.UserDetailsImplementation;
+import com.example.models.DTO.user.AdminResponseDTO;
+import com.example.models.DTO.user.UserResponseDTO;
+import com.example.models.Role;
+import com.example.models.entitys.UserEntity;
+import com.example.repositorys.UserRepository;
+import com.example.security.UserDetailsImplementation;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

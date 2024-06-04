@@ -1,9 +1,9 @@
-package com.example.api.models.DTO.user;
+package com.example.models.DTO.user;
 
 
-import com.example.api.models.DTO.post.PostResponseDTO;
-import com.example.api.models.Role;
-import com.example.api.models.entitys.UserEntity;
+import com.example.models.DTO.post.PostResponseDTO;
+import com.example.models.Role;
+import com.example.models.entitys.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserResponseDTO {
 
-    private Long id;
+    private String id;
     private String name;
     private Role role;
     private String password;

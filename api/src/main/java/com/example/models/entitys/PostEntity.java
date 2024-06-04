@@ -1,36 +1,23 @@
-package com.example.api.models.entitys;
+package com.example.models.entitys;
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import static jakarta.persistence.GenerationType.SEQUENCE;
 
 @Data
-@Table
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="posts")
+@Document(collection="posts")
 public class PostEntity {
 
     @Id
-    @SequenceGenerator(name = "post_sequence", sequenceName = "post_sequence", allocationSize = 1)
-    @GeneratedValue(strategy = SEQUENCE, generator = "post_sequence")
-    private Long id;
-
-    @Column(name = "topic", nullable = false, columnDefinition = "TEXT")
+    private String id;
     private String topic;
-
-    @Column(name = "description", nullable = false, columnDefinition = "TEXT")
     private String description;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id", nullable = false)
     private UserEntity user;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="category_id")
     private CategoryEntity category;
 
     public PostEntity(String topic, String description, UserEntity user, CategoryEntity category){

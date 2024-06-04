@@ -1,8 +1,8 @@
-package com.example.api.security;
+package com.example.security;
 
-import com.example.api.models.DTO.post.PostResponseDTO;
-import com.example.api.models.Role;
-import com.example.api.models.entitys.UserEntity;
+import com.example.models.DTO.post.PostResponseDTO;
+import com.example.models.Role;
+import com.example.models.entitys.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class UserDetailsImplementation implements UserDetails {
 
-    private Long id;
+    private String id;
     private String name;
     private String password;
     private String email;

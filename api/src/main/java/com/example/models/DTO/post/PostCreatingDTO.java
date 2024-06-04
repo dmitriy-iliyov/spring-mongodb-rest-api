@@ -1,8 +1,8 @@
-package com.example.api.models.DTO.post;
+package com.example.models.DTO.post;
 
-import com.example.api.models.entitys.CategoryEntity;
-import com.example.api.models.entitys.PostEntity;
-import com.example.api.models.entitys.UserEntity;
+import com.example.models.entitys.CategoryEntity;
+import com.example.models.entitys.PostEntity;
+import com.example.models.entitys.UserEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -1,12 +1,12 @@
-package com.example.api.controllers;
+package com.example.controllers;
 
-import com.example.api.models.DTO.user.AdminResponseDTO;
-import com.example.api.models.DTO.user.UserLogInDTO;
-import com.example.api.models.DTO.user.UserResponseDTO;
-import com.example.api.models.DTO.user.UserRegistrationDTO;
-import com.example.api.models.Role;
-import com.example.api.models.entitys.UserEntity;
-import com.example.api.security.JwtCore;
+import com.example.models.DTO.user.AdminResponseDTO;
+import com.example.models.DTO.user.UserLogInDTO;
+import com.example.models.DTO.user.UserResponseDTO;
+import com.example.models.DTO.user.UserRegistrationDTO;
+import com.example.models.Role;
+import com.example.models.entitys.UserEntity;
+import com.example.security.JwtCore;
 import com.example.api.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.example.api.security;
+package com.example.security;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;

@@ -1,7 +1,7 @@
-package com.example.api.models.DTO.user;
+package com.example.models.DTO.user;
 
-import com.example.api.models.Role;
-import com.example.api.models.entitys.UserEntity;
+import com.example.models.Role;
+import com.example.models.entitys.UserEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.example.api.controllers;
+package com.example.controllers;
 
 import com.example.api.models.DTO.post.PostCreatingDTO;
 import com.example.api.models.DTO.post.PostResponseDTO;

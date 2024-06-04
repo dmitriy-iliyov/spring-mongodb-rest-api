@@ -1,7 +1,7 @@
-package com.example.api.security.configs;
+package com.example.security.configs;
 
 
-import com.example.api.security.TokenFilter;
+import com.example.security.TokenFilter;
 import com.example.api.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

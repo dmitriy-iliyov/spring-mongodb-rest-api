@@ -1,6 +1,6 @@
-package com.example.api.models.DTO.category;
+package com.example.models.DTO.category;
 
-import com.example.api.models.entitys.CategoryEntity;
+import com.example.models.entitys.CategoryEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

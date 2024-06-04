@@ -1,4 +1,4 @@
-package com.example.api.models.DTO.user;
+package com.example.models.DTO.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
