@@ -8,7 +8,6 @@ import java.util.Optional;
 
 @Repository
 public interface CategoryRepository extends MongoRepository<CategoryEntity, String> {
-
     Optional<CategoryEntity> findByName(String name);
     void deleteByName(String name);
 }

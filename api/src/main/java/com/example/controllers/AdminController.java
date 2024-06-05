@@ -58,7 +58,7 @@ public class AdminController {
 
     @GetMapping("/get/{id}")
     @PreAuthorize("hasAuthority('ADMIN')")
-    public ResponseEntity<AdminResponseDTO> getAdminById(@PathVariable Long id) {
+    public ResponseEntity<AdminResponseDTO> getAdminById(@PathVariable String id) {
 
         Optional<AdminResponseDTO> adminOptional = userService.findEntityById(id).map(AdminResponseDTO::toDTO);
 

@@ -2,7 +2,7 @@ package com.example.security.configs;
 
 
 import com.example.security.TokenFilter;
-import com.example.api.services.UserService;
+import com.example.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -68,7 +68,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED)))
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth -> auth.requestMatchers("/home/**", "/user/login", "/admin/**").permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/home/**", "/user/login", "/admin/**", "/user/new").permitAll()
                         .requestMatchers("/user/**", "/post/**", "/category/**").authenticated())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .addFilterBefore(tokenFilter, UsernamePasswordAuthenticationFilter.class)

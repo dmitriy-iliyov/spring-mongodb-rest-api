@@ -23,7 +23,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public Optional<CategoryEntity> findById(Long id){
+    public Optional<CategoryEntity> findById(String id){
         return categoryRepository.findById(id);
     }
 
@@ -40,7 +40,7 @@ public class CategoryService {
     }
 
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(String id){
         categoryRepository.deleteById(id);
     }
 

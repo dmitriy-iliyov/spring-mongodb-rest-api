@@ -52,13 +52,13 @@ public class JwtCore {
         return null;
     }
 
-    public Long getIdFromJwt(String token){
+    public String getIdFromJwt(String token){
         try {
             Claims userData = Jwts.parser()
                     .setSigningKey(secret.getBytes())
                     .parseClaimsJws(token)
                     .getBody();
-            return userData.get("id", Long.class);
+            return userData.get("id", String.class);
         } catch (Exception e){
             System.out.println("EXCEPTION  " + e.getMessage());
         }

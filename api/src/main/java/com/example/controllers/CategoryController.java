@@ -55,7 +55,7 @@ public class CategoryController {
 
     @GetMapping("/get")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
-    public ResponseEntity<CategoryResponseDTO> getCategoryByIdOrName(@RequestParam(required = false) Long id,
+    public ResponseEntity<CategoryResponseDTO> getCategoryByIdOrName(@RequestParam(required = false) String id,
                                                                      @RequestParam(required = false) String name){
 
         HttpHeaders httpHeaders = new HttpHeaders();
@@ -92,7 +92,7 @@ public class CategoryController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteCategory(@PathVariable Long id){
+    public ResponseEntity<String> deleteCategory(@PathVariable String id){
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-info", "Deleting category");

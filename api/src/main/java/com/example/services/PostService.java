@@ -35,12 +35,12 @@ public class PostService {
     }
 
     @Transactional
-    public Optional<PostResponseDTO> findById(Long id){
+    public Optional<PostResponseDTO> findById(String id){
         return postRepository.findById(id).map(PostResponseDTO::toDTO);
     }
 
     @Transactional
-    public List<PostResponseDTO> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(Long userId, String userName, Long categoryId, String categoryName){
+    public List<PostResponseDTO> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(String userId, String userName, String categoryId, String categoryName){
         List<PostResponseDTO> postDTOS = new ArrayList<>();
         postRepository.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(userId, userName, categoryId, categoryName).forEach(postEntity -> postDTOS.add(PostResponseDTO.toDTO(postEntity)));
         return postDTOS;
@@ -54,7 +54,7 @@ public class PostService {
     }
 
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(String id){
         postRepository.deleteById(id);
     }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CategoryResponseDTO {
 
-    private Long id;
+    private String id;
     private String name;
     private List<PostEntity> posts;
 

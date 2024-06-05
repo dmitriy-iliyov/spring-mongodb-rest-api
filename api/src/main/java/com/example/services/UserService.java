@@ -42,7 +42,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public Optional<UserEntity> findEntityById(Long id){
+    public Optional<UserEntity> findEntityById(String id){
         return userRepository.findById(id);
     }
 
@@ -52,7 +52,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public Optional<UserResponseDTO> findDtoById(Long id){
+    public Optional<UserResponseDTO> findDtoById(String id){
         return userRepository.findById(id).map(UserResponseDTO::toDTO);
     }
 
@@ -93,7 +93,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void deleteById(Long id){
+    public void deleteById(String id){
         userRepository.deleteById(id);
     }
 }

@@ -56,7 +56,7 @@ public class PostController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<PostResponseDTO> getPostById(@PathVariable Long id){
+    public ResponseEntity<PostResponseDTO> getPostById(@PathVariable String id){
 
         Optional<PostResponseDTO> postOptional = postService.findById(id);
 
@@ -70,9 +70,9 @@ public class PostController {
 
     @GetMapping("/get")
     public ResponseEntity<List<PostResponseDTO>> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(
-            @RequestParam(required = false) Long userId,
+            @RequestParam(required = false) String userId,
             @RequestParam(required = false) String userName,
-            @RequestParam(required = false) Long categoryId,
+            @RequestParam(required = false) String categoryId,
             @RequestParam(required = false) String categoryName){
 
         List<PostResponseDTO> posts = postService.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(userId, userName, categoryId, categoryName);
@@ -101,7 +101,7 @@ public class PostController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable Long id) {
+    public ResponseEntity<String> deletePost(@PathVariable String id) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-info", "Deleting post by id");

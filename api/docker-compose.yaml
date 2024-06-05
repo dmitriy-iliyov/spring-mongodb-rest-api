@@ -1,16 +1,16 @@
 version: "3.8"
 services:
-  #  api:
-  #    networks:
-  #      - default
-  #    restart: always
-  #    build:
-  #      context: .
-  #      dockerfile: Dockerfile
-  #    environment:
-  #      PORT: "5000"
-  #    ports:
-  #      - "5000:5000"
+  api:
+    networks:
+      - default
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PORT: 5000
+    ports:
+      - 5000:5000
   mongodb:
     image: mongo
     container_name: mongodb

@@ -107,7 +107,7 @@ public class UserController {
 
     @GetMapping("/edit/{id}")
     @PreAuthorize("hasAuthority('USER')")
-    public String editUserForm(@PathVariable Long id, Model model){
+    public String editUserForm(@PathVariable String id, Model model){
         UserResponseDTO userResponseDTO = userService.findDtoById(id).orElse(null);
         if(userResponseDTO != null){
             model.addAttribute("user", userResponseDTO);
@@ -150,7 +150,7 @@ public class UserController {
 
         String jwt = jwtCore.getTokenFromHttpHeader(request.getHeader("Authorization"));
         String name = jwtCore.getNameFromJwt(jwt);
-        Long id = jwtCore.getIdFromJwt(jwt);
+        String id = jwtCore.getIdFromJwt(jwt);
 
         try {
             if(name != null)
@@ -204,7 +204,7 @@ public class UserController {
     public ResponseEntity<String> deleteUser(HttpServletRequest request) {
 
         String jwt = jwtCore.getTokenFromHttpHeader(request.getHeader("Authorization"));
-        Long id = jwtCore.getIdFromJwt(jwt);
+        String id = jwtCore.getIdFromJwt(jwt);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-Info", "Deleting user by id");

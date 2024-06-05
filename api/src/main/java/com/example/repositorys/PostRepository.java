@@ -10,7 +10,7 @@ public interface PostRepository extends MongoRepository<PostEntity, String> {
     Iterable<PostEntity> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(
             String user_id,
             String user_name,
-            Long category_id,
+            String category_id,
             String category_name);
 
 }

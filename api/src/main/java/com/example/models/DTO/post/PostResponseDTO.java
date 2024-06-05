@@ -8,11 +8,11 @@ import lombok.Data;
 @AllArgsConstructor
 public class PostResponseDTO {
 
-    private Long id;
+    private String id;
     private String topic;
     private String description;
-    private Long userID;
-    private Long categoryID;
+    private String userID;
+    private String categoryID;
 
     public static PostResponseDTO toDTO(PostEntity postEntity){
         return new PostResponseDTO(
