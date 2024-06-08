@@ -9,4 +9,4 @@ RUN mvn package -DskipTests
 FROM openjdk:17 as final
 COPY --from=stage1 /app/target/*.jar app.jar
 EXPOSE 5000
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "-jar", "app.jar", "$ARGS"]

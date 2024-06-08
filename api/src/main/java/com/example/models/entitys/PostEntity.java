@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
@@ -21,6 +22,7 @@ public class PostEntity {
     private String id;
     private String topic;
     private String description;
+    @Indexed(name = "create_date")
     private Instant createDate;
     private UserEntity user;
     private CategoryEntity category;

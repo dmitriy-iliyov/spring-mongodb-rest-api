@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -20,6 +21,7 @@ public class UserRegistrationDTO {
                 .name(userDTO.name)
                 .password(userDTO.password)
                 .email(userDTO.email)
+                .posts(new ArrayList<>())
                 .role(Role.USER)
                 .createDate(Instant.now())
                 .build();
