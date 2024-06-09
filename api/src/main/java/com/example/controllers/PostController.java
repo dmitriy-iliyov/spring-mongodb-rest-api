@@ -78,7 +78,7 @@ public class PostController {
         List<PostResponseDTO> posts = postService.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(userId, userName, categoryId, categoryName);
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("X-info", "Getting all post by user id or name");
+        httpHeaders.add("X-info", "Getting all post by user or category id or name");
 
         return posts.isEmpty()
                 ? ResponseEntity.status(HttpStatus.NOT_FOUND).headers(httpHeaders).body(null)

@@ -4,9 +4,11 @@ import com.example.models.Role;
 import com.example.models.entitys.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class AdminResponseDTO {
 
     private String id;

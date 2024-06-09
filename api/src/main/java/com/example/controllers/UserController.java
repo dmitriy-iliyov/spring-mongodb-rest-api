@@ -50,17 +50,18 @@ public class UserController {
     public ResponseEntity<String> saveNewUser(@ModelAttribute UserRegistrationDTO user){
 
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("X-Info", "Creating user");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
         try{
             userService.save(UserRegistrationDTO.toEntity(user));
+            httpHeaders.add("X-Info", "Creating user");
             httpHeaders.setLocation(URI.create("/user/login"));
             return ResponseEntity
                     .status(HttpStatus.SEE_OTHER)
                     .headers(httpHeaders)
                     .body("User successfully created, redirecting...");
         }catch (DataIntegrityViolationException e){
+            httpHeaders.add("X-Info", "Creating user failed");
             System.out.println("EXCEPTION  " + e.getMessage());
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -144,26 +145,31 @@ public class UserController {
     @GetMapping("/get")
     @PreAuthorize("hasAnyAuthority('ADMIN', 'USER')")
     public ResponseEntity<?> getUserByIdOrName(HttpServletRequest request) {
-
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("X-Info", "Getting user");
-
+        String id = null;
+        String name = null;
         String jwt = jwtCore.getTokenFromHttpHeader(request.getHeader("Authorization"));
-        String name = jwtCore.getNameFromJwt(jwt);
-        String id = jwtCore.getIdFromJwt(jwt);
+        HttpHeaders httpHeaders = new HttpHeaders();
 
+        if(jwt != null){
+            name = jwtCore.getNameFromJwt(jwt);
+            id = jwtCore.getIdFromJwt(jwt);
+        }
         try {
-            if(name != null)
+            if(name != null){
+                httpHeaders.add("X-Info", "Getting user by name");
                 return getResponseEntity(httpHeaders, userService.findEntityByName(name));
-            if(id != null)
+            }
+            if(id != null){
+                httpHeaders.add("X-Info", "Getting user by id");
                 return getResponseEntity(httpHeaders, userService.findEntityById(id));
+            }
         } catch (NullPointerException e){
             System.out.println("EXCEPTION  " + e.getMessage());
         }
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .headers(httpHeaders)
-                .body(null);
+                .body("NullPointerException, user can't be find");
     }
 
     private ResponseEntity<?> getResponseEntity(HttpHeaders httpHeaders, Optional<UserEntity> userEntity) {

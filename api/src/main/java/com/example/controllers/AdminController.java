@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @PostMapping("/new")
-    public ResponseEntity<String> saveNewAdmin(@ModelAttribute AdminRegistrationDTO admin) {
+    public ResponseEntity<String> saveNewAdmin(@ModelAttribute("admin") AdminRegistrationDTO admin) {
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-Info", "Creating admin");
@@ -46,6 +46,7 @@ public class AdminController {
             httpHeaders.setLocation(URI.create("/user/login"));
             return ResponseEntity
                     .status(HttpStatus.SEE_OTHER)
+                    .headers(httpHeaders)
                     .body("Admin successfully created, redirecting...");
         } catch(DataIntegrityViolationException e){
             System.out.println("EXCEPTION  " + e.getMessage());
