@@ -59,8 +59,8 @@ public class PostControllerTest {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setId("507f1f77bcf86cd799439011");
         postEntity.setId("507f1f77bcf86cd799439011");
-        postEntity.setUser(userEntity);
-        postEntity.setCategory(categoryEntity);
+        postEntity.setUserID("507f1f77bcf86cd799439011");
+        postEntity.setCategoryID("507f1f77bcf86cd799439011");
         postEntity.setTopic("topic");
         postEntity.setDescription("description");
     }
@@ -148,9 +148,9 @@ public class PostControllerTest {
 
     @Test
     @WithMockUser(authorities = {"ADMIN", "USER"})
-    public void findAllByUserIdOrUserNameOrCategoryIdOrCategoryNameOkTest() throws Exception{
+    public void findAllByUserIdOrCategoryIdOkTest() throws Exception{
 
-        when(postService.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(any(), any(), any(), any()))
+        when(postService.findAllByUserIdOrCategoryId(any(), any()))
                 .thenReturn(List.of(postResponseDTO, postResponseDTO));
 
         mockMvc.perform(get("/post/get").param("userId", "1"))
@@ -158,28 +158,18 @@ public class PostControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
 
-        mockMvc.perform(get("/post/get").param("userName", "user"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
-
         mockMvc.perform(get("/post/get").param("categoryId", "1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
 
-        mockMvc.perform(get("/post/get").param("categoryName", "category"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
-
-        verify(postService, times(4)).findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(any(), any(), any(), any());
+        verify(postService, times(2)).findAllByUserIdOrCategoryId(any(), any());
     }
 
     @Test
     @WithMockUser(authorities = {"ADMIN", "USER"})
-    public void findAllByUserIdOrUserNameOrCategoryIdOrCategoryNameNotFoundTest() throws Exception{
-        when(postService.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(any(), any(), any(), any()))
+    public void findAllByUserIdOrCategoryIdNotFoundTest() throws Exception{
+        when(postService.findAllByUserIdOrCategoryId(any(), any()))
                 .thenReturn(List.of());
 
         mockMvc.perform(get("/post/get").param("userId", "1"))
@@ -187,22 +177,12 @@ public class PostControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
 
-        mockMvc.perform(get("/post/get").param("userName", "user"))
-                .andDo(print())
-                .andExpect(status().isNotFound())
-                .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
-
         mockMvc.perform(get("/post/get").param("categoryId", "1"))
                 .andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
 
-        mockMvc.perform(get("/post/get").param("categoryName", "category"))
-                .andDo(print())
-                .andExpect(status().isNotFound())
-                .andExpect(header().string("X-info", "Getting all post by user or category id or name"));
-
-        verify(postService, times(4)).findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(any(), any(), any(), any());
+        verify(postService, times(2)).findAllByUserIdOrCategoryId(any(), any());
     }
 
     @Test

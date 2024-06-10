@@ -14,7 +14,7 @@ services:
       - MONGO_USERNAME=rootuser
       - MONGO_PASSWORD=rootpass
       - MONGO_DB=mydb
-      - MONGODB_URI=mongodb://mongodb/mydb
+      - MONGODB_HOST=mongodb
     ports:
       - 5000:8080
   mongodb:

@@ -29,6 +29,4 @@ public class UserEntity {
     @Indexed(name = "create_date")
     private Instant createDate;
     private Role role;
-    private List<PostEntity> posts;
-
 }

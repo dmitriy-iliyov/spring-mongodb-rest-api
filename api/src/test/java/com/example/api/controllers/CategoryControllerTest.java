@@ -74,7 +74,7 @@ public class CategoryControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(header().string("X-info", "Creating category"))
-                .andExpect(content().string("Category successfully created"));
+                .andExpect(content().string("Category with this name newCategory successfully created"));
 
         verify(categoryService, times(1)).save(any());
     }

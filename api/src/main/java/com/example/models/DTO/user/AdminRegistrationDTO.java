@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +21,7 @@ public class AdminRegistrationDTO {
                 .password(adminDTO.password)
                 .role(Role.ADMIN)
                 .createDate(Instant.now())
-                .email("none")
+                .email("null")
                 .build();
     }
 }

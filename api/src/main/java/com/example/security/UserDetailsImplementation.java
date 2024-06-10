@@ -25,12 +25,8 @@ public class UserDetailsImplementation implements UserDetails {
     private String email;
     private Instant createDate;
     private Role role;
-    private List<PostResponseDTO> posts;
 
     public static UserDetailsImplementation build(UserEntity userEntity){
-
-        List<PostResponseDTO> postResponseDTOS = new ArrayList<>();
-        userEntity.getPosts().forEach(postEntity -> postResponseDTOS.add(PostResponseDTO.toDTO(postEntity)));
 
         return new UserDetailsImplementation(
                 userEntity.getId(),
@@ -38,9 +34,7 @@ public class UserDetailsImplementation implements UserDetails {
                 userEntity.getPassword(),
                 userEntity.getEmail(),
                 userEntity.getCreateDate(),
-                userEntity.getRole(),
-                postResponseDTOS
-        );
+                userEntity.getRole());
     }
 
     @Override

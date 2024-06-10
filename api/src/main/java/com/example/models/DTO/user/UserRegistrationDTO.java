@@ -21,7 +21,6 @@ public class UserRegistrationDTO {
                 .name(userDTO.name)
                 .password(userDTO.password)
                 .email(userDTO.email)
-                .posts(new ArrayList<>())
                 .role(Role.USER)
                 .createDate(Instant.now())
                 .build();

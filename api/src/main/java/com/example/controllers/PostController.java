@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,6 @@ public class PostController {
     @PostMapping("/new")
     @PreAuthorize("hasAuthority('USER')")
     public ResponseEntity<String> saveNewPost(@ModelAttribute PostCreatingDTO post) {
-
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-info", "Creating post");
 
@@ -46,7 +46,7 @@ public class PostController {
                      .status(HttpStatus.CREATED)
                      .headers(httpHeaders)
                      .body("Post successfully created");
-        } catch (ChangeSetPersister.NotFoundException e){
+        } catch (Exception e){
             System.out.println("EXCEPTION  " + e.getMessage());
             return ResponseEntity
                      .status(HttpStatus.NOT_FOUND)
@@ -69,13 +69,11 @@ public class PostController {
     }
 
     @GetMapping("/get")
-    public ResponseEntity<List<PostResponseDTO>> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(
+    public ResponseEntity<List<PostResponseDTO>> findAllByUserIdOrCategoryId(
             @RequestParam(required = false) String userId,
-            @RequestParam(required = false) String userName,
-            @RequestParam(required = false) String categoryId,
-            @RequestParam(required = false) String categoryName){
+            @RequestParam(required = false) String categoryId){
 
-        List<PostResponseDTO> posts = postService.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(userId, userName, categoryId, categoryName);
+        List<PostResponseDTO> posts = postService.findAllByUserIdOrCategoryId(userId, categoryId);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-info", "Getting all post by user or category id or name");

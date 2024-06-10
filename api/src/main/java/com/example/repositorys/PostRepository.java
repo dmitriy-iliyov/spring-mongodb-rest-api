@@ -7,10 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PostRepository extends MongoRepository<PostEntity, String> {
 
-    Iterable<PostEntity> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(
+    Iterable<PostEntity> findAllByUserIDOrCategoryID(
             String user_id,
-            String user_name,
-            String category_id,
-            String category_name);
+            String category_id);
 
 }

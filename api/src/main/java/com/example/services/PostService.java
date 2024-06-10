@@ -2,11 +2,14 @@ package com.example.services;
 
 import com.example.models.DTO.post.PostCreatingDTO;
 import com.example.models.DTO.post.PostResponseDTO;
+import com.example.models.DTO.user.UserResponseDTO;
 import com.example.models.entitys.CategoryEntity;
+import com.example.models.entitys.PostEntity;
 import com.example.models.entitys.UserEntity;
 import com.example.repositorys.PostRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.crossstore.ChangeSetPersister;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +25,13 @@ public class PostService {
     private final UserService userService;
     private final CategoryService categoryService;
 
+
     @Transactional
-    public void save(PostCreatingDTO post) throws ChangeSetPersister.NotFoundException {
-        UserEntity userEntity = userService.findEntityById(post.getUserID()).orElse(null);
-        CategoryEntity categoryEntity = categoryService.findById(post.getCategoryID()).orElse(null);
+    public void save(PostCreatingDTO postCreatingDTO) throws ChangeSetPersister.NotFoundException {
+        UserEntity userEntity = userService.findEntityById(postCreatingDTO.getUserID()).orElse(null);
+        CategoryEntity categoryEntity = categoryService.findById(postCreatingDTO.getCategoryID()).orElse(null);
         if(userEntity != null && categoryEntity != null){
-            postRepository.save(PostCreatingDTO.toEntity(post, userEntity, categoryEntity));
+            postRepository.save(PostCreatingDTO.toEntity(postCreatingDTO));
         }
         else{
             throw new ChangeSetPersister.NotFoundException();
@@ -40,9 +44,9 @@ public class PostService {
     }
 
     @Transactional
-    public List<PostResponseDTO> findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(String userId, String userName, String categoryId, String categoryName){
+    public List<PostResponseDTO> findAllByUserIdOrCategoryId(String userId, String categoryId){
         List<PostResponseDTO> postDTOS = new ArrayList<>();
-        postRepository.findAllByUserIdOrUserNameOrCategoryIdOrCategoryName(userId, userName, categoryId, categoryName).forEach(postEntity -> postDTOS.add(PostResponseDTO.toDTO(postEntity)));
+        postRepository.findAllByUserIDOrCategoryID(userId, categoryId).forEach(postEntity -> postDTOS.add(PostResponseDTO.toDTO(postEntity)));
         return postDTOS;
     }
 

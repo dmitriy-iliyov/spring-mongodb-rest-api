@@ -24,7 +24,7 @@ public class PostEntity {
     private String description;
     @Indexed(name = "create_date")
     private Instant createDate;
-    private UserEntity user;
-    private CategoryEntity category;
+    private String userID;
+    private String categoryID;
 
 }

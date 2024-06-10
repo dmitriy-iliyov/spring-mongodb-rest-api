@@ -26,12 +26,8 @@ public class UserResponseDTO {
     private List<PostResponseDTO> posts;
 
     public static UserResponseDTO toDTO(UserEntity userEntity){
-        List<PostResponseDTO> listOfPostDTO = new ArrayList<>();
-        userEntity.getPosts().forEach(postEntity -> listOfPostDTO.add(PostResponseDTO.toDTO(postEntity)));
-
         return new UserResponseDTO(
                 userEntity.getId(), userEntity.getName(), userEntity.getRole(), userEntity.getPassword(),
-                userEntity.getEmail(), userEntity.getCreateDate(), listOfPostDTO
-        );
+                userEntity.getEmail(), userEntity.getCreateDate(), null);
     }
 }

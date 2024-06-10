@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.models.DTO.post.PostResponseDTO;
 import com.example.models.DTO.user.AdminResponseDTO;
 import com.example.models.DTO.user.UserLogInDTO;
 import com.example.models.DTO.user.UserResponseDTO;
@@ -7,6 +8,7 @@ import com.example.models.DTO.user.UserRegistrationDTO;
 import com.example.models.Role;
 import com.example.models.entitys.UserEntity;
 import com.example.security.JwtCore;
+import com.example.services.PostService;
 import com.example.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +41,8 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtCore jwtCore;
+    private final PostService postService;
+
 
     @GetMapping("/new")
     public String registerNewUserForm(Model model){
@@ -82,13 +87,16 @@ public class UserController {
 
         Authentication authentication;
 
+        System.out.println(user);
+
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("Authorization", "Authenticate user");
 
         try{
             authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(user.getName(), user.getPassword()));
-        } catch (BadCredentialsException e){
+            System.out.println(authentication);
+        } catch (Exception e){
             System.out.println("EXCEPTION  " + e.getMessage());
             httpHeaders.add("Error-Message", "Incorrect password, " + e.getMessage());
 
@@ -120,9 +128,9 @@ public class UserController {
         }
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     @PreAuthorize("hasAuthority('USER')")
-    public ResponseEntity<String>  saveEditedUser(@ModelAttribute UserResponseDTO userResponseDTO){
+    public ResponseEntity<String> saveEditedUser(@ModelAttribute UserResponseDTO userResponseDTO){
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.add("X-info", "Editing user");
@@ -133,10 +141,10 @@ public class UserController {
                     .status(HttpStatus.OK)
                     .headers(httpHeaders)
                     .body("Successfully edited");
-        } catch (DataIntegrityViolationException e){
+        } catch (Exception e){
             System.out.println("EXCEPTION  " + e.getMessage());
             return ResponseEntity
-                    .status(HttpStatus.OK)
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .headers(httpHeaders)
                     .body("failed(");
         }
@@ -180,6 +188,8 @@ public class UserController {
                         .status(HttpStatus.OK)
                         .headers(httpHeaders)
                         .body(userEntity.map(AdminResponseDTO::toDTO));
+            List<PostResponseDTO> posts = new ArrayList<>(postService.findAllByUserIdOrCategoryId(userEntity.get().getId(), null));
+            userResponseDTO.setPosts(posts);
             return ResponseEntity
                     .status(HttpStatus.OK)
                     .headers(httpHeaders)

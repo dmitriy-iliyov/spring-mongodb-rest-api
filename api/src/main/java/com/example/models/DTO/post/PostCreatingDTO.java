@@ -18,13 +18,13 @@ public class PostCreatingDTO {
     private String userID;
     private String categoryID;
 
-    public static PostEntity toEntity(PostCreatingDTO postDTO, UserEntity user, CategoryEntity category){
+    public static PostEntity toEntity(PostCreatingDTO postDTO){
         return PostEntity.builder()
                 .topic(postDTO.topic)
                 .description(postDTO.description)
-                .createDate(postDTO.createDate)
-                .user(user)
-                .category(category)
+                .createDate(Instant.now())
+                .userID(postDTO.getUserID())
+                .categoryID(postDTO.categoryID)
                 .build();
     }
 }

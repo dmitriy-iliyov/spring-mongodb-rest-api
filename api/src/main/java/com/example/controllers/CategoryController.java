@@ -43,7 +43,7 @@ public class CategoryController {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
                     .headers(httpHeaders)
-                    .body("Category successfully created");
+                    .body("Category with this name " + category.getName() + " successfully created");
         }catch (DataIntegrityViolationException e){
             System.out.println("EXCEPTION  " + e.getMessage());
             return ResponseEntity

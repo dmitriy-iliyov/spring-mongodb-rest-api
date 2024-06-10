@@ -25,8 +25,7 @@ import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -59,7 +58,6 @@ class UserControllerTest {
         userEntity.setId("507f1f77bcf86cd799439011");
         userEntity.setName("user");
         userEntity.setRole(Role.USER);
-        userEntity.setPosts(new ArrayList<>());
     }
 
     @Test
@@ -128,7 +126,7 @@ class UserControllerTest {
     public void saveEditedUserOkTest() throws Exception {
         when(userService.findDtoById(anyString())).thenReturn(Optional.of(userResponseDTO));
 
-        mockMvc.perform(post("/user/edit")
+        mockMvc.perform(put("/user/edit")
                         .with(csrf())
                         .flashAttr("user", userResponseDTO))
                 .andExpect(status().isOk())
