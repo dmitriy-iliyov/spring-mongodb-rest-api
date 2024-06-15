@@ -13,6 +13,7 @@ public class RabbitMQProducer {
     private final RabbitTemplate rabbitTemplate;
 
     public void sendMessageMongoQueue(MessageCreatingDTO message){
+        rabbitTemplate.setExchange("message-exchanger");
         rabbitTemplate.convertAndSend("mongoQueue", message);
     }
 }

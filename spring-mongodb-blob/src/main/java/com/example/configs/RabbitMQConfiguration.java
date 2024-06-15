@@ -1,7 +1,6 @@
 package com.example.configs;
 
-import org.springframework.amqp.core.AmqpAdmin;
-import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
@@ -59,5 +58,20 @@ public class RabbitMQConfiguration {
     @Bean
     public Queue mongoQueue(){
         return new Queue("mongoQueue");
+    }
+
+    @Bean
+    public FanoutExchange fanoutExchange(){
+        return new FanoutExchange("message-exchanger");
+    }
+
+    @Bean
+    public Binding binding1(){
+        return BindingBuilder.bind(postgresQueue()).to(fanoutExchange());
+    }
+
+    @Bean
+    public Binding binding2(){
+        return BindingBuilder.bind(mongoQueue()).to(fanoutExchange());
     }
 }
