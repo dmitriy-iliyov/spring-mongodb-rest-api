@@ -1,4 +1,4 @@
-package com.example.security.configs;
+package com.example.configs;
 
 
 import com.example.security.TokenFilter;

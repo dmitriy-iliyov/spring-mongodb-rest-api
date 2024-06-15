@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   api:
-    container_name: api
+    container_name: mongo-api
     build:
       context: .
       dockerfile: Dockerfile
@@ -20,7 +20,7 @@ services:
       - 5000:8080
   mongodb:
     image: mongo
-    container_name: mongodb
+    container_name: mongodb-container
     ports:
       - 27017:27017
     volumes:
